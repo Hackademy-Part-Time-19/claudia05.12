@@ -4,18 +4,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agenda</title>
-    <style>
-        * {
-            font-family: Arial, Helvetica, sans-serif;
-            margin: 0;
-
-        }
-    </style>
+    <title>Rubrica</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="agenda.css">
 
 </head>
 
 <body style="background-color: rgb(58, 52, 52); ">
+
+    <div id="modaleAggiunta"
+        style="position: absolute;width: 100%;height: 100%;background-color: rgba(63,42,42,0.8);display: flex;align-items: center;justify-content: center;display: none;">
+        <div onclick="chiudiModaleAggiunta()" style="position: absolute; top:30px; right: 30px;cursor: pointer;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="55" height="55" viewBox="0 0 24 24">
+                <path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                    d="M6.758 17.243L12.001 12m5.243-5.243L12 12m0 0L6.758 6.757M12.001 12l5.243 5.243" />
+            </svg>
+        </div>
+        <div
+            style="height: 60vh;width: 350px;background-color: #391d1d;border-radius:30px;padding: 25px;display: flex;flex-direction: column;">
+            <h3 style="color: white;text-align: center;margin-top: 10px;">Aggiungi contatto</h3>
+            <div style="background-color: rgba(63,42,42,0);flex:6">
+                <div>
+                    <h5
+                        style="color: white;margin-right: 10px; margin-left: 10px;margin-bottom: 10px;margin-top: 30px;font-weight: 400;">
+                        Nome</h5>
+                    <div style="display: flex;align-items: center;justify-content: center;">
+
+                        <input id="inputNome" placeholder="Nome"
+                            style="height: 35px;border-radius: 10px;padding-left: 20px;background-color: #606060; border: none;width: 90%;outline: none;color: white;" />
+                    </div>
+                </div>
+                <div>
+                    <h5
+                        style="color: white;margin-right: 10px; margin-left: 10px;margin-bottom: 10px;margin-top: 30px;font-weight: 400;">
+                        Cognome</h5>
+                    <div style="display: flex;align-items: center;justify-content: center;">
+
+                        <input id="inputCognome" placeholder="Congome"
+                            style="height: 35px;border-radius: 10px;padding-left: 20px;background-color: #606060; border: none;width: 90%;outline: none;color: white;" />
+                    </div>
+                </div>
+                <div>
+                    <h5
+                        style="color: white;margin-right: 10px; margin-left: 10px;margin-bottom: 10px;margin-top: 30px;font-weight: 400;">
+                        Numero di telefono</h5>
+                    <div style="display: flex;align-items: center;justify-content: center;">
+
+                        <input id="inputNumero" placeholder="Numero"
+                            style="height: 35px;border-radius: 10px;padding-left: 20px;background-color: #606060; border: none;width: 90%;outline: none;color: white;" />
+                    </div>
+                </div>
+            </div>
+            <div
+                style="background-color: rgba(60, 36, 36, 0);flex:1; display: flex;align-items: center;justify-content: center;">
+                <div onclick="aggiungiContatto()" class="buttonCta">
+                    <h5 style="color: white;font-weight: 600;">Salva</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div style="display: flex;height: 100vh;">
         <div style="background-color: rgb(59, 31, 31); flex:1; border-right: 1px solid rgba(187, 114, 114, 0.5);">
             <div style="display: flex;">
@@ -27,36 +75,216 @@
             </div>
             <div style="display: flex; margin-left: 20px; margin-top: 20px;">
                 <div
-                    style=" width: 200px; background-color:rgb(200, 200, 200); height: 45px; border-radius: 10px;display: flex;">
+                    style=" width: 200px; background-color:rgb(63, 42, 42); height: 45px; border-radius: 10px;display: flex;">
                     <div style="flex: 1;">
                         <img src="https://cdn-icons-png.flaticon.com/128/751/751463.png" ;
-                            style="width: 20px; height: 20px; margin-left: 10px; margin-top: 10px; background-color: rgba(200, 200, 200, 0.5);">
+                            style="width: 20px; height: 20px; margin-left: 10px; margin-top: 10px; background-color: rgba(63, 42, 42, 0.5);">
                         </img>
                     </div>
                     <div style="flex: 3;">
-                        <input id="inputSearch" placeholder="Search"
-                            style="height: 35px; border-radius: 10px; padding-left: 5px; border: none; width: 80%;margin-left:10px ; margin-top: 3px; background-color:rgba(200, 200, 200, 0.5);">
+                        <input oninput="ricercaUtenti()" id="inputSearch" placeholder="Search"
+                            style="height: 35px; border-radius: 10px; padding-left: 5px; border: none; width: 80%;margin-left:10px ; margin-top: 3px; background-color:rgba(63, 42, 42, 0.5);">
                     </div>
                 </div>
-                <div style="width: 20px; margin-left: 20px; margin-top: 10px; cursor: pointer;">
-                    <img style="width:25px; height: 25px; background-color: rgba(200, 200, 200, 0.5);" ,
+                <div onclick="apriModaleAggiunta()" ;
+                    style="width: 20px; margin-left: 20px; margin-top: 10px; cursor: pointer;">
+                    <img style="width:25px; height: 25px; background-color: rgba(63, 42, 42, 0.5);" ,
                         src="https://th.bing.com/th/id/OIP.O8Gh2aHyxz-AbiAiKRcrZQHaHa?w=165&h=180&c=7&r=0&o=5&pid=1.7"
                         alt="add">
                 </div>
             </div>
 
         </div>
+        <div id="containerContatti"
+            style="background-color: rgb(65, 55, 55); flex:4.5;padding: 30px;padding-top: 20px;">
+            <p id="noResultP"
+                style="color: rgba(255, 255, 255, 0.6);font-size: 20px;text-align: center;font-weight: 500;margin-top: 30px;display: none;">
+                Nessun risultato</p>
 
-
-        <div style="background-color: rgb(65, 55, 55); flex:4.5;">
-            
 
         </div>
 
     </div>
 
 
+    <script>
+        function apriModaleAggiunta() {
+            document.getElementById("modaleAggiunta").style.display = "flex";
+        }
+        function chiudiModaleAggiunta() {
+            document.getElementById("modaleAggiunta").style.display = "none";
+        }
+        let contatti = [];
 
+        function ricercaUtenti() {
+            console.log("ciao");
+            let inputSearch = document.getElementById("inputSearch").value;
+
+            if (!inputSearch) {
+                for (let i = 0; i < contatti.length; i++) {
+                    document.getElementById(`container-${i}-contatto`).style.display = "block";
+                }
+                document.getElementById("noResultP").style.display = "none";
+                return;
+            }
+
+            let listaContatti = contatti.filter((contatto) => {
+                return contatto.nome.startsWith(inputSearch) || contatto.cognome.startsWith(inputSearch) || contatto.numero.startsWith(inputSearch);
+            })
+            console.log(listaContatti);
+            let listaIdContatti = listaContatti.map((contatto) => {
+                return contatto.indice;
+            })
+
+            console.log(listaIdContatti);
+            if (listaIdContatti.length == 0) {
+                document.getElementById("noResultP").style.display = "block";
+            } else {
+                document.getElementById("noResultP").style.display = "none";
+            }
+            for (let i = 0; i < contatti.length; i++) {
+
+
+                if (!listaIdContatti.includes(parseInt(id))) {
+                    document.getElementById(`container-${i}-contatto`).style.display = "none";
+                }
+            }
+
+
+        }
+        let indiceConttatto = 0;
+
+        function aggiungiContatto() {
+            let nome = document.getElementById("inputNome").value
+            let cognome = document.getElementById("inputCognome").value
+            let numero = document.getElementById("inputNumero").value
+
+            if (!nome || !cognome || !numero) {
+
+                if (!nome) {
+                    document.getElementById("inputNome").style.border = "1px solid red";
+                }
+
+                if (!cognome) {
+                    document.getElementById("inputCognome").style.border = "1px solid red";
+                }
+
+                if (!numero) {
+                    document.getElementById("inputNumero").style.border = "1px solid red";
+                }
+
+                return;
+            }
+
+
+            let contatto = {
+                nome: nome,
+                cognome: cognome,
+                numero: numero,
+                indice: indiceConttatto
+            }
+
+
+            contatti.push(contatto);
+
+
+
+            document.getElementById("containerContatti").innerHTML += `<div id="container-${indiceConttatto}-contatto">
+                    <div id="div-${indiceConttatto}-contatto"
+                        style="display: flex; border-bottom: 1px solid rgba(63,42,42,0.4); height: 60px;margin-top: 15px;">
+                        <div style="flex: 1;background-color: black;display: flex;">
+                            <h4 id="${indiceConttatto}-nome" style="color: white;margin-left: 10px;margin-top: 20px;">${nome}</h4>
+                            <h4 id="${indiceConttatto}-cognome" style="color: white;margin-left: 10px;margin-top: 20px;">${cognome}</h4>
+                        </div>
+                        <div style="flex: 1;background-color: black;">
+                            <h4 id="${indiceConttatto}-numero" style="color: white;margin-left: 10px;margin-top: 20px;">${numero}</h4>
+                        </div>
+                        <div style="flex: 1;background-color: black;display: flex;justify-content: flex-end;">
+    
+    
+                            <div onClick="modificaContatto(${indiceConttatto})" class="btnEdit">
+                                <h5 style="color: white;">Edit</h5>
+                            </div>
+                            <div  onClick="eliminaContatto(${indiceConttatto})" style="cursor: pointer;margin-top: 5px;margin-left: 20px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24">
+                                    <path fill="none" stroke="#ff6c6c" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="1.5"
+                                        d="M6.758 17.243L12.001 12m5.243-5.243L12 12m0 0L6.758 6.757M12.001 12l5.243 5.243" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="div-${indiceConttatto}-modifica-contatto"
+                        style="display: flex; border-bottom: 1px solid rgba(63,42,42,0.4); height: 60px;margin-top: 15px;display:none">
+                        <div style="flex: 1;background-color: black;display: flex;">
+                            <input id="${indiceConttatto}-input-nome" placeholder="Nome"
+                                style="height: 35px;border-radius: 10px;padding-left: 20px;background-color: #606060; border: none;width: 30%;outline: none;color: white;" />
+                            <input id="${indiceConttatto}-input-cognome" placeholder="Cognome"
+                                style="height: 35px;border-radius: 10px;padding-left: 20px;background-color: #606060; border: none;width: 30%;outline: none;color: white;margin-left: 10px;" />
+                        </div>
+                        <div style="flex: 1;background-color: black;">
+                            <input id="${indiceConttatto}-input-numero" placeholder="Numero"
+                                style="height: 35px;border-radius: 10px;padding-left: 20px;background-color: #606060; border: none;width: 60%;outline: none;color: white;" />
+                        </div>
+                        <div style="flex: 1;background-color: black;display: flex;justify-content: flex-end;">
+    
+                            <div onClick="annullaModificaContatto(${indiceConttatto})" class="btnEdit"
+                                style="margin-right: 20px;background-color: black;border: 1px solid rgba(63,42,42,0.3)">
+                                <h5 style="color: white;">Annulla</h5>
+                            </div>
+                            <div onClick="salvaModificaContatto(${indiceConttatto})" class="btnEdit">
+                                <h5 style="color: white;">Salva</h5>
+                            </div>
+    
+                        </div>
+                    </div>
+                </div>`;
+
+            chiudiModaleAggiunta();
+            indiceConttatto++;
+            document.getElementById("inputNome").value = "";
+            document.getElementById("inputCognome").value = "";
+            document.getElementById("inputNumero").value = "";
+        }
+
+
+        function modificaContatto(indice) {
+            document.getElementById(`div-${indice}-contatto`).style.display = "none";
+            document.getElementById(`div-${indice}-modifica-contatto`).style.display = "flex";
+
+            let nome = document.getElementById(`${indice}-nome`).innerHTML;
+            let cognome = document.getElementById(`${indice}-cognome`).innerHTML;
+            let numero = document.getElementById(`${indice}-numero`).innerHTML;
+
+            document.getElementById(`${indice}-input-nome`).value = nome;
+            document.getElementById(`${indice}-input-cognome`).value = cognome;
+            document.getElementById(`${indice}-input-numero`).value = numero;
+        }
+
+        function annullaModificaContatto(indice) {
+            document.getElementById(`div-${indice}-contatto`).style.display = "flex";
+            document.getElementById(`div-${indice}-modifica-contatto`).style.display = "none";
+        }
+
+        function eliminaContatto(indice) {
+            document.getElementById(`container-${indice}-contatto`).remove();
+        }
+
+        function salvaModificaContatto(indice) {
+            let inputNome = document.getElementById(`${indice}-input-nome`).value;
+            let inputCognome = document.getElementById(`${indice}-input-cognome`).value;
+            let inputNumero = document.getElementById(`${indice}-input-numero`).value;
+
+            document.getElementById(`${indice}-nome`).innerHTML = inputNome;
+            document.getElementById(`${indice}-cognome`).innerHTML = inputCognome;
+            document.getElementById(`${indice}-numero`).innerHTML = inputNumero;
+
+
+            document.getElementById(`div-${indice}-contatto`).style.display = "flex";
+            document.getElementById(`div-${indice}-modifica-contatto`).style.display = "none";
+        }
+
+    </script>
 
 
 

@@ -1,0 +1,44 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+
+::placeholder {
+    color: rgba(216, 186, 186, 0.5);
+}
+
+.btnEdit {
+    height: 35px;
+    border-radius: 10px;
+    background-color: #606060;
+    width: 100px;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: ease-in-out .1s;
+    box-shadow: rgba(255, 255, 255, 0.2) 0px 2px 8px 0px;
+}
+
+.btnEdit:hover {
+    transform: scale(1.02);
+}
+
+.buttonCta {
+    width: 95%;
+    height: 40px;
+    border-radius: 20;
+    background-color: black;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: ease-in-out .1s;
+    box-shadow: rgba(255, 255, 255, 0.2) 0px 2px 8px 0px;
+}
+
+.buttonCta:hover {
+    transform: scale(1.02);
+}
